@@ -10,5 +10,5 @@ module.exports = {
     "ssl": !!process.env.SSL,
     "database": process.env.MIGRATION_DATABASE_NAME,
     "username": process.env.MIGRATION_DATABASE_USER,
-    "password": process.env.MIGRATION_DATAASEB_PASS
+    "password": process.env.MIGRATION_DATABASE_PASS
   }
