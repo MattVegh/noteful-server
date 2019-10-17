@@ -9,6 +9,7 @@ const serializedFolder = folder => ({
     id: folder.id,
     name: folder.name
 })
+
 foldersRouter
     .route('/')
     .get((req, res, next) => {
@@ -89,3 +90,5 @@ foldersRouter
          })
          .catch(next)
         })
+
+module.exports = foldersRouter

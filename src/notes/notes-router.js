@@ -92,3 +92,5 @@ notesRouter
          })
          .catch(next)
         })
+
+module.exports = notesRouter
