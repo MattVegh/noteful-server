@@ -7,7 +7,7 @@ const jsonParser = express.json()
 
 const serializedFolder = folder => ({
     id: folder.id,
-    name: folder.name
+    name: folder.folder_name
 })
 
 foldersRouter
@@ -45,25 +45,24 @@ foldersRouter
 
 foldersRouter
     .route('/:folder_id')
-    .all((req, res, next) => {
+    .get((req, res, next) => {
         FolderService.getbyId(
             req.app.get('db'),
             req.params.folder_id
         )
-        .then(numRowsAffected => {
-            res.status(204).end()
+        .then(folder => {
+            console.log('string', folder)
+            res.json(serializedFolder(folder))
         })
         .catch(next)
     })
-    .get((req, res, next) => {
-        res.json(serializedFolder(res.folder))
-    })
+    
     .delete((req, res, next) => {
-        FoldersService.deleteFolder(
+        FolderService.deleteFolder(
             req.app.get('db'),
             req.params.folder_id
           )
-            .then(numRowsAffected => {
+            .then(folder => {
               res.status(204).end()
             })
             .catch(next)
@@ -85,8 +84,8 @@ foldersRouter
         req.params.folder_id,
         folderToUpdate
        )
-         .then(numRowsAffected => {
-           res.status(204).end()
+         .then(folder => {
+           res.json(serializedFolder(folder))
          })
          .catch(next)
         })

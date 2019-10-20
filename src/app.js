@@ -18,7 +18,7 @@ console.log('FOLDERSROUTER:', foldersRouter);
 console.log('NOTESROUTER:', notesRouter);
 
 app.use('/api/folders', foldersRouter)
-app.use('/api/folders/:folderId', notesRouter)
+app.use('/api/notes', notesRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world...')

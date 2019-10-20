@@ -7,7 +7,7 @@ const jsonParser = express.json()
 
 const serializedNote = note => ({
     id: note.id,
-    name: note.name,
+    name: note.note_name,
     modified: note.modifield,
     content: note.content
 })
@@ -16,7 +16,7 @@ notesRouter
     .route('/')
     .get((req, res, next) => {
         const knexInstance = req.app.get('db')
-        notesService.getAllnotes(knexInstance)
+        notesService.getAllNotes(knexInstance)
             .then(notes => {
                 res.json(notes.map(serializedNote))
             })
@@ -47,25 +47,22 @@ notesRouter
 
 notesRouter
     .route('/:note_id')
-    .all((req, res, next) => {
-        notesService.getbyId(
+    .get((req, res, next) => {
+        notesService.getById(
             req.app.get('db'),
             req.params.note_id
         )
-        .then(numRowsAffected => {
-            res.status(204).end()
+        .then(note => {
+            res.json(serializedNote(note))
         })
         .catch(next)
-    })
-    .get((req, res, next) => {
-        res.json(serializedNote(res.note))
     })
     .delete((req, res, next) => {
         notesService.deleteNote(
             req.app.get('db'),
             req.params.note_id
           )
-            .then(numRowsAffected => {
+            .then(note => {
               res.status(204).end()
             })
             .catch(next)
@@ -87,8 +84,8 @@ notesRouter
         req.params.note_id,
         noteToUpdate
        )
-         .then(numRowsAffected => {
-           res.status(204).end()
+         .then(note => {
+           res.json(serializedNote(note))
          })
          .catch(next)
         })

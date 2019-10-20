@@ -19,7 +19,7 @@ const FoldersService = {
             .first()
     },
     deleteFolder(knex, id) {
-        return knex('notful_folders')
+        return knex('noteful_folders')
             .where({ id })
             .delete()
     },
