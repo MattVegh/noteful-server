@@ -63,7 +63,7 @@ notesRouter
             req.params.note_id
           )
             .then(note => {
-              res.status(204).end()
+                res.json(serializedNote(note))
             })
             .catch(next)
     })
