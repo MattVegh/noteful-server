@@ -14,8 +14,7 @@ app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
 app.use(cors())
 app.use(helmet())
 
-console.log('FOLDERSROUTER:', foldersRouter);
-console.log('NOTESROUTER:', notesRouter);
+
 
 app.use('/api/folders', foldersRouter)
 app.use('/api/notes', notesRouter)
