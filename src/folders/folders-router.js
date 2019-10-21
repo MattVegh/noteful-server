@@ -20,7 +20,7 @@ foldersRouter
             })
             .catch(error => {
                 res.json(error)
-            })
+            }).end()
     })
     
     .post(jsonParser, (req, res, next) => {
