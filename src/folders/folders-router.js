@@ -19,8 +19,8 @@ foldersRouter
                 res.json(folders.map(serializedFolder))
             })
             .catch(error => {
-                res.json(error)
-            }).end()
+                res.json(error).end()
+            })
     })
     
     .post(jsonParser, (req, res, next) => {
