@@ -20,7 +20,9 @@ notesRouter
             .then(notes => {
                 res.json(notes.map(serializedNote))
             })
-            .catch(next)
+            .catch(error => {
+                res.json(error).end()
+            })
     })
     
     .post(jsonParser, (req, res, next) => {
